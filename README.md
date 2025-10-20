@@ -19,11 +19,13 @@ Permite:
 
 - ✅ Almacenar balance de cada usuario en el array "dinero".
 - ✅ Mostrar balance de cada usuario.
+- ✅ Requisito de DNI para registrarte e iniciar sesión.
 
 Actualmente los usuarios están guardados en **arrays**, pero en futuras versiones quiero añadir:
 - Guardado de usuarios en archivo `.txt`.
 - Menú tras iniciar sesión (consultar saldo, ingresar, retirar...).
 - Posible versión con interfaz gráfica (Swing o JavaFX). 
+
 
 
 
