@@ -1,4 +1,3 @@
-
 //ESTE ES UN PROYECTO SIMPLE HECHO 100% POR MI DEDICADO A APRENDER SOBRE METODOS Y ARRAYS.
 //CARLOS MANZANO REGALADO 1ºDAM
 
@@ -10,6 +9,7 @@ public class cajeroAutomatico {
 		
 		String[] usuarios = {"cmanzano", "root", "admin", "user"};
 		String[] contraseñas = {"platano123", "12345", "adn", "dinosaurio"};
+		String[] dnis = {"29503012Z", "87597426L", "56473615J", "234726162S"};
 		double[] dinero = {10.45, 1009.32, 0.50, 192283.68};
 		
 		System.out.println("- - - BIENVENIDO A EL CAJERO AUTOMATICO - - -");
@@ -18,12 +18,12 @@ public class cajeroAutomatico {
 		System.out.println("Elige una opción: ");
 		int opcion = sc.nextInt();
 		
-		logIn(opcion, usuarios, contraseñas, dinero);
+		logIn(opcion, usuarios, contraseñas, dnis, dinero); 
 		
 		sc.close();
 	}
 	
-	public static void logIn(int opcion, String[] usuarios, String[] contraseñas, double[] dinero) {
+	public static void logIn(int opcion, String[] usuarios, String[] contraseñas, String[] dnis, double[] dinero) {
 		Scanner sc = new Scanner(System.in);
 		
 		if(opcion == 1) {
@@ -35,8 +35,13 @@ public class cajeroAutomatico {
 			System.out.println("Introduce la contraseña de el usuario " + usuario);
 			String contraseña = sc.next();
 			
-			boolean acceso = comprobarCredenciales(usuarios, contraseñas, usuario, contraseña);
-			mostrarDinero(acceso, usuario, contraseña, usuarios, contraseñas, dinero);
+			System.out.println();
+			
+			System.out.println("Introduce tu DNI: ");
+			String dni = sc.next();
+			
+			boolean acceso = comprobarCredenciales(usuarios, contraseñas, usuario, contraseña, dnis, dni);
+			mostrarDinero(acceso, usuario, contraseña, usuarios, contraseñas, dnis, dni, dinero);
 			
 		} else if (opcion == 2) {
 			registrarUsuario();
@@ -46,10 +51,10 @@ public class cajeroAutomatico {
 		sc.close();
 	}
 	
-	public static boolean comprobarCredenciales(String[] usuarios, String[] contraseñas, String usuario, String contraseña) {
+	public static boolean comprobarCredenciales(String[] usuarios, String[] contraseñas, String usuario, String contraseña, String[] dnis, String dni) {
 
 		for(int x= 0; x < usuarios.length; x++) {
-			if(usuario.equals(usuarios[x]) && contraseña.equals(contraseñas[x])) {
+			if(usuario.equals(usuarios[x]) && contraseña.equals(contraseñas[x]) && dni.equals(dnis[x])) {
 				return true;
 			}
 		}
@@ -77,18 +82,21 @@ public class cajeroAutomatico {
 		System .out.println("Introduce la contraseña de el usuario " + nuevoUsuario);
 		String nuevaContraseña = sc.next();
 		
+		System.out.println("Cual es tu DNI?: ");
+		String dni = sc.next();
+		
 		System.out.println();
 		
-		System.out.println("El usuario " + nuevoUsuario + " ha sido registrado correctamente!");
+		System.out.println("El usuario " + nuevoUsuario + " ha sido registrado correctamente con el DNI " + dni + "!");
 		System.out.println("Recuerda apuntar que la contraseña de el nuevo usuario " + nuevoUsuario + " es: " + nuevaContraseña);
 		sc.close();
 	}
 	
-	public static void mostrarDinero(boolean acceso, String usuario, String contraseña, String[] usuarios, String[] contraseñas, double[] dinero) {
+	public static void mostrarDinero(boolean acceso, String usuario, String contraseña, String[] usuarios, String[] contraseñas, String[] dnis, String dni, double[] dinero) {
 		
 		if(acceso) {
 			for(int x = 0; x < usuarios.length; x++) {
-				if(usuario.equals(usuarios[x]) && contraseña.equals(contraseñas[x])) {
+				if(usuario.equals(usuarios[x]) && contraseña.equals(contraseñas[x]) && dni.equals(dnis[x])) {
 					mostrarAcceso(true, usuario, dinero[x]);
 					return;
 				}
